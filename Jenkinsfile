@@ -9,8 +9,8 @@ pipeline {
 				   '''	
 			} 
 		}
-		
-		stage ('deploy') {
+		parallel {		
+		stage ('deploy1') {
 			steps {
 				sh '''
 						echo "this is deploy stage"
@@ -18,7 +18,15 @@ pipeline {
 				   '''	
 			}	   
 		}
-		
+		stage ('deploy2') {
+                        steps {
+                                sh '''
+                                                echo "this is deploy stage"
+                                                sleep 2
+                                   '''
+                        }
+                }
+		}
 		stage ('test') {
 			steps {
 				sh '''
